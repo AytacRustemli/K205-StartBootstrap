@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "K205-StartBootstrap/1.0.0": {
+        "runtime": {
+          "K205-StartBootstrap.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "K205-StartBootstrap/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
