@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="~/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -46,6 +47,13 @@
                 <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/portfolios">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Portfolio</span></a>
             </li>
 
             <!-- Divider -->
@@ -417,8 +425,25 @@
     <!-- Core plugin JavaScript-->
     <script src="~/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    @*<!-- Custom scripts for all pages-->
+    <script src="~/admin/js/sb-admin-2.min.js"></script>
+    @await RenderSectionAsync("Scripts",required:false)*@
+
+
+
+
     <!-- Custom scripts for all pages-->
     <script src="~/admin/js/sb-admin-2.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+    <script src="~/admin/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="~/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/admin/js/demo/datatables-demo.js"></script>
     @await RenderSectionAsync("Scripts",required:false)
 </body>
 
