@@ -1,5 +1,6 @@
 ﻿using K205Deneme.Areas.admin.ViewModel;
 using K205Deneme.Data;
+using K205Deneme.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,14 +16,52 @@ namespace K205Deneme.Areas.admin.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-            AdminVM vm = new()
+            return View(await _context.Portfolios.ToListAsync());
+        }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            var portfolio = _context.Portfolios.FirstOrDefault(x => x.Id == id);
+            if (portfolio == null) return NotFound();
+            return View(portfolio);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Portfolio portfolio)
+        {
+            _context.Portfolios.Add(portfolio);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Create));
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var portfolio = _context.Portfolios.FirstOrDefault(x => x.Id == id);
+            if (portfolio == null) return NotFound();
+            return View(portfolio);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Portfolio portfolio)
+        {
+            try
             {
-                Portfolios = _context.Portfolios.ToList()
-            };
-            return View(vm);
+                _context.Entry(portfolio);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+
+
+
+            return View();
         }
     }
 }
