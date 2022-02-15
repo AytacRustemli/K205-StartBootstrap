@@ -28,6 +28,10 @@ namespace K205Deneme.Areas.admin.Controllers
             return View(portfolio);
         }
 
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(Portfolio portfolio)

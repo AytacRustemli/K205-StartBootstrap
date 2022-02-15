@@ -1,12 +1,15 @@
 using K205Deneme.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var connetctionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<DenemeDbContext>(x =>
+    x.UseSqlServer(connetctionString));
 
-builder.Services.AddSingleton<DenemeDbContext>();
 var app = builder.Build();
 
 
@@ -27,9 +30,6 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
 app.UseEndpoints(endpoints =>
@@ -39,5 +39,12 @@ app.UseEndpoints(endpoints =>
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
     );
 });
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+
 
 app.Run();

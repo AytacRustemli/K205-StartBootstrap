@@ -5,9 +5,10 @@ namespace K205Deneme.Data
 {
     public class DenemeDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DenemeDbContext(DbContextOptions<DenemeDbContext> options)
+            : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=DenemeDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+
         }
 
         public DbSet<Masthead> Mastheads { get; set; }
